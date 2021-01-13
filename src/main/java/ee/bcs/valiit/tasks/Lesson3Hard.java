@@ -12,12 +12,10 @@ public class Lesson3Hard {
     public static int evenFibonacci(int n) {
         // TODO liida kokku kõik paaris fibonacci arvud kuni numbrini x
         int sum = 0;
-        int fNumber = 0;
-        if (n == 1) {
-            fNumber = 0;
-        } else if (n == 2 || n == 3) {
+        int fNumber;
+        if (n == 2 || n == 3) {
             fNumber = 1;
-        } else {
+        } else if (n != 1) {
             int num1 = 0;
             int num2 = 1;
             int i = 2;
@@ -27,13 +25,15 @@ public class Lesson3Hard {
                 num2 = fNumber;
                 System.out.println(fNumber);
                 i++;
-                if(fNumber % 2 ==0){
+                if(fNumber % 2 == 0){
                     sum = sum + fNumber;
                 }
             }
         }
         return sum;
     }
+
+
 
 
 

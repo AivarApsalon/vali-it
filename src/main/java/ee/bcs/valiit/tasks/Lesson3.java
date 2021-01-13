@@ -9,13 +9,13 @@ public class Lesson3 {
         System.out.println(isPrime(338));
     }
 
-    public static int sum(int[] x){
+    public static int sum(int[] x) {
         // Todo liida kokku kõik numbrid massivis x
         int size = x.length;
         int i = 0;
         int sum = 0;
-        for(i=0; i<size; i++){
-            sum=sum+x[i];
+        for (i = 0; i < size; i++) {
+            sum = sum + x[i];
         }
         return sum;
     }
@@ -41,7 +41,7 @@ public class Lesson3 {
 
         int size = a.length;
         int maxNumber = a[0];
-        int indeks=0;
+        int indeks = 0;
         int[] newSort = new int[size];
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -55,7 +55,7 @@ public class Lesson3 {
             maxNumber = Integer.MIN_VALUE;
         }
 
-            return newSort;
+        return newSort;
     }
 
 //Uus ülesanne
@@ -63,8 +63,8 @@ public class Lesson3 {
     public static String reverseString(String a) {
         // TODO tagasta string tagurpidi
         String newString = "";
-        int size = a.length()-1;
-        while(size>=0){
+        int size = a.length() - 1;
+        while (size >= 0) {
             char newChar = a.charAt(size);
             newString = newString + newChar;
             size--;
@@ -73,10 +73,10 @@ public class Lesson3 {
     }
 
 
-    public static boolean isPrime(int x){
+    public static boolean isPrime(int x) {
         // TODO tagasta kas sisestatud arv on primaar arv (jagub ainult 1 ja iseendaga)
-        for(int divisor = 2; divisor < x; divisor++) {
-            if( x != divisor && x % divisor == 0){
+        for (int divisor = 2; divisor < x; divisor++) {
+            if (x != divisor && x % divisor == 0) {
                 return false;
             }
         }

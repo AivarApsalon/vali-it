@@ -72,8 +72,8 @@ public class Lesson2 {
         int fNumber = 0;
         if (n == 1) {
             fNumber = 0;
-        }else if (n == 2 || n == 3) {
-                fNumber = 1;
+        } else if (n == 2 || n == 3) {
+            fNumber = 1;
         } else {
             int num1 = 0;
             int num2 = 1;
@@ -94,34 +94,33 @@ public class Lesson2 {
         // TODO 1 (tee alamfunktsioon) mis leiab 3n+1 sequenci pikkuse
         // kui on paaris / 2 kui on paaritu *3+1
         // TODO 2 tee tsükkel mis leiab i -> j kõige suurema tsükkli pikkuse
-        int algus = i;
         int longestSq = 1;
         int start = i;
         int end = j;
-        while (i<=j){
+        while (i <= j) {
             int num = sequence(i);
-            if(num>longestSq)
-                longestSq=num;
+            if (num > longestSq)
+                longestSq = num;
             i++;
         }
-        System.out.println(algus + " " + j + " " + longestSq);
+        System.out.println(start + " " + j + " " + longestSq);
     }
 
-        public static int sequence(int n) {
-            int count = 1;
-            if (n == 1) {
-            } else{
-                while (n != 1) {
-                    if (n % 2 == 0) {
-                        n = n / 2;
-                        count++;
-                    }else{
-                        n = n*3 + 1;
-                        count++;
-                    }
-                }
+    public static int sequence(int n) {
+        int count = 1;
+        if (n == 1) return count;
+
+        while (n != 1) {
+            if (n % 2 == 0) {
+                n = n / 2;
+                count++;
+            } else {
+                n = n * 3 + 1;
+                count++;
+            }
         }
-            return count;
+
+        return count;
     }
 
 //Uus ülesanne
