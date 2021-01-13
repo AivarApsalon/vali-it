@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Lesson3Hard {
 
     public static void main(String[] args) {
-        System.out.println(evenFibonacci(8));
+        randomGame();
 
     }
     public static int evenFibonacci(int n) {

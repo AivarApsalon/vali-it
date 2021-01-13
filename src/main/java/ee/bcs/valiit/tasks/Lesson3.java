@@ -6,7 +6,7 @@ public class Lesson3 {
     public static void main(String[] args) {
         int[] x = {1, 2, 3, 4, 5};
         int[] a = {6, 2, 9, 3, 7};
-        System.out.println(Arrays.toString(sort(a)));
+        System.out.println(isPrime(338));
     }
 
     public static int sum(int[] x){
@@ -43,17 +43,17 @@ public class Lesson3 {
         int maxNumber = a[0];
         int indeks=0;
         int[] newSort = new int[size];
-            for(int i = 0;i<size; i++){
-                for(int j = 0; j<size; j++) {
-                    if (maxNumber < a[j]) {
-                        maxNumber = a[j];
-                        indeks = j;
-                    }
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (maxNumber < a[j]) {
+                    maxNumber = a[j];
+                    indeks = j;
                 }
-                a[indeks]= Integer.MIN_VALUE;
-                newSort[i] = maxNumber;
-                maxNumber = Integer.MIN_VALUE;
             }
+            a[indeks] = Integer.MIN_VALUE;
+            newSort[i] = maxNumber;
+            maxNumber = Integer.MIN_VALUE;
+        }
 
             return newSort;
     }
