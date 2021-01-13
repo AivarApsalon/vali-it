@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Lesson2 {
 
     public static void main(String[] args) {
-        System.out.println(exercise4(9));
+        exercise5(100, 200);
 
     }
 
@@ -127,7 +127,7 @@ public class Lesson2 {
 //Uus ülesanne
 
     public static int exercise6(int N) {
-        Integer[] numbers = {1, 2, 3, 4};
+        Integer[] numbers = {1, 2, 7, 4};
         int size = numbers.length - 1;
         if (size < N) {
             return -1;
