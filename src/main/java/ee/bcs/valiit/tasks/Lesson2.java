@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Lesson2 {
 
     public static void main(String[] args) {
-        System.out.println(exercise4(3));
+        System.out.println(exercise4(9));
 
     }
 
@@ -72,13 +72,13 @@ public class Lesson2 {
         int fNumber = 0;
         if (n == 1) {
             fNumber = 0;
-        }if (n == 2) {
+        }else if (n == 2 || n == 3) {
                 fNumber = 1;
         } else {
             int num1 = 0;
             int num2 = 1;
-            int i = 1;
-            while (i <= n) {
+            int i = 2;
+            while (i < n) {
                 fNumber = num1 + num2;
                 num1 = num2;
                 num2 = fNumber;

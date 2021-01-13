@@ -6,30 +6,34 @@ import java.util.Scanner;
 public class Lesson3Hard {
 
     public static void main(String[] args) {
-        System.out.println(evenFibonacci(5));
+        System.out.println(evenFibonacci(8));
 
     }
-    public static int evenFibonacci(int n){
+    public static int evenFibonacci(int n) {
         // TODO liida kokku kõik paaris fibonacci arvud kuni numbrini x
-            if(n==0){
-                return 0;
-            }else if(n==1) {
-                return 1;
-            }else{
-                int a = 0;
-                int b = 1;
-                for(int i = 1; i < n; i++) {
-                    int tmp = a;
-                    a = b + tmp;
+        int sum = 0;
+        int fNumber = 0;
+        if (n == 1) {
+            fNumber = 0;
+        } else if (n == 2 || n == 3) {
+            fNumber = 1;
+        } else {
+            int num1 = 0;
+            int num2 = 1;
+            int i = 2;
+            while (i < n) {
+                fNumber = num1 + num2;
+                num1 = num2;
+                num2 = fNumber;
+                System.out.println(fNumber);
+                i++;
+                if(fNumber % 2 ==0){
+                    sum = sum + fNumber;
                 }
-                return b;
             }
         }
-
-
-
-
-
+        return sum;
+    }
 
 
 
