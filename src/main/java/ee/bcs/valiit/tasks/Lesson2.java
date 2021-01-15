@@ -1,11 +1,16 @@
 package ee.bcs.valiit.tasks;
 
+import com.sun.jdi.IntegerValue;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Lesson2 {
 
     public static void main(String[] args) {
-        exercise5(100, 200);
+        int[] a = {1, 1, 3, 3, 7, 2, 2, 2, 2};
+        System.out.println(numberInBinary(5));
 
     }
 
@@ -123,7 +128,9 @@ public class Lesson2 {
         return count;
     }
 
-//Uus ülesanne
+    //  Uus ülesanne (codeWars 8-1)
+    //  array = [1, 2, 3, 4] and N = 2, then the result is (3 astmel 2) == 9;
+    //  array = [1, 2, 3] and N = 3, but N is outside of the array, so the result is -1
 
     public static int exercise6(int N) {
         Integer[] numbers = {1, 2, 7, 4};
@@ -135,31 +142,108 @@ public class Lesson2 {
         }
     }
 
-//Uus ülesanne
 
+    // Uus ülesanne (codeWars 8-2)
+    public static int howOld(String herOld) {
+        String stringAnswer = herOld.substring(0, 1);
+        int intAnswer = Integer.parseInt(stringAnswer);
+        return intAnswer;
+    }
+
+
+    // Uus ülesanne (codeWars 8-3)
+    // Given a non-negative integer n, write a function to_binary/ToBinary which returns
+    // that number in a binary format.
+    // to_binary(1)  /* should return 1 */
+    // to_binary(5)  /* should return 101 */
+    // to_binary(11) /* should return 1011 */
+    public static int numberInBinary(int n) {
+
+
+        return 0;
+    }
+
+
+    //Uus ülesanne (codeWars 7-1)
+    //Input: "How can mirrors be real if our eyes aren't real"
+    //Output: "How Can Mirrors Be Real If Our Eyes Aren't Real"
     public static String exercise7(String string) {
-        String[] arr = string.split(" ");
-        StringBuffer stringbuffer = new StringBuffer();
-
-        for (int i = 0; i < arr.length; i++) {
-            stringbuffer.append(Character.toUpperCase(arr[i].charAt(0))).append(arr[i].substring(1)).append(" ");
+        String[] words = string.split(" ");
+        String answer = "";
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i].toString();
+            String newString = word.substring(0, 1).toUpperCase() + word.substring(1);
+            answer = answer + " " + newString;
         }
-        return stringbuffer.toString().trim();
+
+        return answer;
     }
 
-// Uus ülesanne
 
+    //Uus ülesanne (codeWars 7-2)
+    //Red Knight is chasing two pawns. Which pawn will be caught, and where?
+
+
+    //Uus ülesanne (codeWars 7-3)
+    //
+
+
+    // Uus ülesanne (codeWars 6-1)
+    //toCamelCase(the-stealth-warri"or"); // returns "theStealthWarrior"
+    //toCamelCase("The_Stealth_Warrior"); // returns "TheStealthWarrior"
     public static String exercise8(String string) {
-        String[] n = string.split("_");
-        StringBuffer stringbuffer = new StringBuffer();
-
-        for (int i = 0; i < n.length; i++) {
-            stringbuffer.append(Character.toUpperCase(n[i].charAt(0))).append(n[i].substring(1)).append("");
+        String[] words = string.replace("_", "-").split("-");
+        String answer = "";
+        for (int i = 1; i < words.length; i++) {
+            String word = words[i].toString();
+            String newString = word.substring(0, 1).toUpperCase() + word.substring(1);
+            answer = answer + newString;
         }
-        return stringbuffer.toString().trim();
+        return words[0].toString() + answer;
     }
 
+
+    // Uus ülesanne (codeWars 6-2)
+    //Given a list lst and a number N, create a new list that contains each number of lst at
+    // most N times without reordering. For example if N = 2, and the input is [1,2,3,1,2,1,2,3],
+    // you take [1,2,3,1,2], drop the next [1,2] since this would lead to 1 and 2 being in the
+    // result 3 times, and then take 3, which leads to [1,2,3,1,2,3].
+
+    // EnoughIsEnough.deleteNth(new int[] {20,37,20,21}, 1) // return [20,37,21]
+    // EnoughIsEnough.deleteNth(new int[] {1,1,3,3,7,2,2,2,2}, 3) // return [1, 1, 3, 3, 7, 2, 2, 2]
+
+    public static int[] deleteNth(int[] a, int n) {
+        int size = a.length;
+        int minNumber = a[0];
+        int maxNumber = a[0];
+        for (int i = 0; i < size; i++) {
+            if (maxNumber < a[i]) {
+                maxNumber = a[i];
+            }
+        }
+        for (int i = 0; i < size; i++) {
+            if (minNumber > a[i]) {
+                minNumber = a[i];
+            }
+        }
+        int indeks = 0;
+        int[] newSort = new int[size];
+
+        for (int i = minNumber; i <= maxNumber; i++) {
+            for (int j = 0; j < size; j++) {
+
+                if (maxNumber < a[j]) {
+                    maxNumber = a[j];
+                    indeks = j;
+                }
+            }
+            a[indeks] = Integer.MIN_VALUE;
+            newSort[i] = maxNumber;
+            maxNumber = Integer.MIN_VALUE;
+        }
+
+
+        return null;
+    }
 }
-
-
 

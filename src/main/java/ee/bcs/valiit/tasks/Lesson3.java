@@ -6,7 +6,7 @@ public class Lesson3 {
     public static void main(String[] args) {
         int[] x = {1, 2, 3, 4, 5};
         int[] a = {6, 2, 9, 3, 7};
-        System.out.println(isPrime(338));
+        System.out.println(reverseString("Aivar"));
     }
 
     public static int sum(int[] x) {
