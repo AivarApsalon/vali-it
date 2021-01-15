@@ -163,6 +163,19 @@ public class Lesson2 {
         return 0;
     }
 
+    // Uus ülesanne (codeWars 8-4)
+    // Your task is to sum the differences between consecutive pairs
+    //   in the array in descending order.
+    // For example: sumOfDifferences([2, 1, 10])
+    // Returns 9
+    // Descending order: [10, 2, 1]
+    // Sum: (10 - 2) + (2 - 1) = 8 + 1 = 9
+    // If the array is empty or the array has only one element the result
+    //   should be 0 (Nothing in Haskell).
+
+
+
+
 
     //Uus ülesanne (codeWars 7-1)
     //Input: "How can mirrors be real if our eyes aren't real"
@@ -185,7 +198,11 @@ public class Lesson2 {
 
 
     //Uus ülesanne (codeWars 7-3)
-    //
+    //In this Kata, you will be given an array of unique elements, and your task is to rearrange
+    // the values so that the first max value is followed by the first minimum, followed by second
+    // max value then second min value, etc.
+    // solve([15,11,10,7,12]) = [15,7,12,10,11]
+
 
 
     // Uus ülesanne (codeWars 6-1)
