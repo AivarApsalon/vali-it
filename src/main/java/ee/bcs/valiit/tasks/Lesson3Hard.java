@@ -108,6 +108,6 @@ public class Lesson3Hard {
             String letter = String.valueOf(newChar);
             newString = newString + morse.get(letter);
         }
-        return newString;
+        return newString.toString();
     }
 }
