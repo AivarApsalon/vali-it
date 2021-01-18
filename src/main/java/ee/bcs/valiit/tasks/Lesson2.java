@@ -3,6 +3,7 @@ package ee.bcs.valiit.tasks;
 import com.sun.jdi.IntegerValue;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,8 +11,8 @@ public class Lesson2 {
 
     public static void main(String[] args) {
         int[] a = {1, 1, 3, 3, 7, 2, 2, 2, 2};
-        int[] arr = {};
-        System.out.println(numberInBinary(11));
+        int[] arr = {15,11,10,7,12};
+        System.out.println(Arrays.toString(solve(arr)));
 
     }
 
@@ -237,6 +238,7 @@ public class Lesson2 {
         int indeks = 0;
         int[] newSort = new int[size];
         int[] newSort2 = new int[size];
+        int[] newSort3 = new int[size];
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (maxNumber < arr[j]) {
@@ -248,15 +250,19 @@ public class Lesson2 {
             newSort[i] = maxNumber;
             maxNumber = Integer.MIN_VALUE;
         }
-        for(int m = 0; m < size; m++){
 
-
-
+        int lisa = 0;
+        int lisa2 = 1;
+        int lisa3 = 0;
+        for(int u = 0; u <(size/2); u++){
+            newSort3[lisa] = newSort[u];
+            newSort3[lisa2] = newSort[(size-1)-lisa3];
+            lisa = lisa + 2;
+            lisa2 = lisa2 + 2;
+            lisa3 = lisa3 + 1;
         }
-
-
-
-        return newSort;
+        newSort3[size-1] = newSort[size/2];
+        return newSort3;
     }
 
 
