@@ -9,7 +9,7 @@ public class Lesson3 {
         System.out.println(reverseString("Aivar"));
     }
 
-    public static int sum(int[] x) {
+    public static int sumArray(int[] x) {
         // Todo liida kokku kõik numbrid massivis x
         int size = x.length;
         int i = 0;

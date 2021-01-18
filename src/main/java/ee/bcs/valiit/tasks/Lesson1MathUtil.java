@@ -9,7 +9,7 @@ public class Lesson1MathUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(min(2, 2, 5));
+        System.out.println(abs(-6));;
 
     }
 

@@ -74,7 +74,7 @@ public class Lesson2 {
     // Fibonacci jada on fib(n) = fib(n-1) + fib(n-2);
     // 0, 1, 1, 2, 3, 5, 8, 13, 21
     // Tagasta fibonacci jada n element
-    public static int exercise4(int n) {
+    public static int Fibonacci(int n) {
         int fNumber = 0;
         if (n == 1) {
             fNumber = 0;

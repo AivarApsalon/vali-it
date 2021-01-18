@@ -1,4 +1,4 @@
-package ee.bcs.valiit.tasks.solution;
+package ee.bcs.valiit.tasks.controller;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
