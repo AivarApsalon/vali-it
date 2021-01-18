@@ -10,7 +10,8 @@ public class Lesson2 {
 
     public static void main(String[] args) {
         int[] a = {1, 1, 3, 3, 7, 2, 2, 2, 2};
-        System.out.println(numberInBinary(5));
+        int[] arr = {};
+        System.out.println(numberInBinary(11));
 
     }
 
@@ -158,9 +159,10 @@ public class Lesson2 {
     // to_binary(5)  /* should return 101 */
     // to_binary(11) /* should return 1011 */
     public static int numberInBinary(int n) {
+        String number = String.format(Integer.toBinaryString(n));
+        n = Integer.parseInt(number);
 
-
-        return 0;
+        return n;
     }
 
     // Uus ülesanne (codeWars 8-4)
@@ -173,8 +175,35 @@ public class Lesson2 {
     // If the array is empty or the array has only one element the result
     //   should be 0 (Nothing in Haskell).
 
+    public static int sumOfDifferences(int[] arr) {
+        int size = arr.length;
+        int sum = 0;
+        int newSize = arr.length;
+        int maxNumber;
+        if (newSize == 0) {
+            sum = 0;
+        } else {
+            maxNumber = arr[0];
+            int indeks = 0;
+            int[] newSort = new int[size];
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size; j++) {
+                    if (maxNumber < arr[j]) {
+                        maxNumber = arr[j];
+                        indeks = j;
+                    }
+                }
+                arr[indeks] = Integer.MIN_VALUE;
+                newSort[i] = maxNumber;
+                maxNumber = Integer.MIN_VALUE;
+            }
 
-
+            for (int s = 0; s < newSize - 1; s++) {
+                sum = sum + (newSort[s] - newSort[s + 1]);
+            }
+        }
+        return sum;
+    }
 
 
     //Uus ülesanne (codeWars 7-1)
@@ -202,11 +231,37 @@ public class Lesson2 {
     // the values so that the first max value is followed by the first minimum, followed by second
     // max value then second min value, etc.
     // solve([15,11,10,7,12]) = [15,7,12,10,11]
+    public static int[] solve(int[] arr) {
+        int size = arr.length;
+        int maxNumber = arr[0];
+        int indeks = 0;
+        int[] newSort = new int[size];
+        int[] newSort2 = new int[size];
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (maxNumber < arr[j]) {
+                    maxNumber = arr[j];
+                    indeks = j;
+                }
+            }
+            arr[indeks] = Integer.MIN_VALUE;
+            newSort[i] = maxNumber;
+            maxNumber = Integer.MIN_VALUE;
+        }
+        for(int m = 0; m < size; m++){
 
+
+
+        }
+
+
+
+        return newSort;
+    }
 
 
     // Uus ülesanne (codeWars 6-1)
-    //toCamelCase(the-stealth-warri"or"); // returns "theStealthWarrior"
+    //toCamelCase(the-stealth-warrior"); // returns "theStealthWarrior"
     //toCamelCase("The_Stealth_Warrior"); // returns "TheStealthWarrior"
     public static String exercise8(String string) {
         String[] words = string.replace("_", "-").split("-");
@@ -258,7 +313,6 @@ public class Lesson2 {
             newSort[i] = maxNumber;
             maxNumber = Integer.MIN_VALUE;
         }
-
 
         return null;
     }
