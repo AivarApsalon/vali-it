@@ -11,15 +11,15 @@ public class Lesson2 {
 
     public static void main(String[] args) {
         int[] a = {1, 1, 3, 3, 7, 2, 2, 2, 2};
-        int[] arr = {15,11,10,7,12};
-        System.out.println(Arrays.toString(solve(arr)));
+        int[] arr = {15, 11, 10, 7, 12};
+        System.out.println(Arrays.toString(printEvenNumWeb(5)));
 
     }
 
     // TODO loo 10 elemendile täisarvude massiv
     // TODO loe sisse konsoolist 10 täisarvu
     // TODO trüki arvud välja vastupidises järiekorras
-    public static void exercise1() {
+    public static void revArray() {
         int[] numbers = new int[10];
         Scanner scanner = new Scanner(System.in);
         for (int i = 0; i < numbers.length; i++) {
@@ -33,11 +33,20 @@ public class Lesson2 {
     }
 
 
+    public static int[] revArrayWeb(int[] array) {
+        int[] newArray = new int[array.length];
+        for (int i = array.length - 1; i >= 0; i--) {
+            newArray[array.length - 1 - i] = array[i];
+        }
+        return newArray;
+    }
+
+
     // TODO prindi välja x esimest paaris arvu
     // Näide:
     // Sisend 5
     // Väljund 2 4 6 8 10
-    public static void exercise2(int x) {
+    public static void printEvenNum(int x) {
         int evenCount = 0;
         int number = 1;
         while (evenCount < x) {
@@ -48,6 +57,22 @@ public class Lesson2 {
             number++;
         }
     }
+
+    public static int[] printEvenNumWeb(int x) {
+        int evenCount = 0;
+        int number = 1;
+        int n = 0;
+        int[] newArray = new int[x];
+        while (evenCount < x) {
+            if (number % 2 == 0) {
+                evenCount++;
+                newArray[evenCount-1] = number;
+            }
+            number++;
+        }
+        return newArray;
+    }
+
 
     // TODO trüki välja korrutustabel mis on x ühikut lai ja y ühikut kõrge
     // TODO näiteks x = 3 y = 3
@@ -62,7 +87,7 @@ public class Lesson2 {
     //  et saada taebli kuju
     // TODO 5 võrdle ridu. Kas on mingi seaduspärasus ridade vahel,
     // mis on ja mis võiks olla. Äkki tuleb mõni idee
-    public static void exercise3(int x, int y) {
+    public static void korrutusTabel(int x, int y) {
         for (int i = 0; i < y; i++) {
             for (int j = 1; j <= x; j++) {
                 System.out.print((j * (i + 1) + " "));
@@ -70,6 +95,21 @@ public class Lesson2 {
             System.out.println();
         }
     }
+
+    public static String korrutusTabelWeb(int x, int y) {
+        for (int i = 0; i < y; i++) {
+            for (int j = 1; j <= x; j++) {
+                System.out.print((j * (i + 1) + " "));
+            }
+            System.out.println();
+        }
+        return null;
+    }
+
+
+
+
+
 
     // TODO
     // Fibonacci jada on fib(n) = fib(n-1) + fib(n-2);
@@ -96,7 +136,7 @@ public class Lesson2 {
         return fNumber;
     }
 
-    public static void exercise5(int i, int j) {
+    public static String threeN1Web(int i, int j) {
         // https://onlinejudge.org/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=36
         // TODO 1 (tee alamfunktsioon) mis leiab 3n+1 sequenci pikkuse
         // kui on paaris / 2 kui on paaritu *3+1
@@ -110,7 +150,7 @@ public class Lesson2 {
                 longestSq = num;
             i++;
         }
-        System.out.println(start + " " + j + " " + longestSq);
+        return "Start:" + start + "  End:" + j + "  Longest:" + longestSq;
     }
 
     public static int sequence(int n) {
@@ -254,14 +294,14 @@ public class Lesson2 {
         int lisa = 0;
         int lisa2 = 1;
         int lisa3 = 0;
-        for(int u = 0; u <(size/2); u++){
+        for (int u = 0; u < (size / 2); u++) {
             newSort3[lisa] = newSort[u];
-            newSort3[lisa2] = newSort[(size-1)-lisa3];
+            newSort3[lisa2] = newSort[(size - 1) - lisa3];
             lisa = lisa + 2;
             lisa2 = lisa2 + 2;
             lisa3 = lisa3 + 1;
         }
-        newSort3[size-1] = newSort[size/2];
+        newSort3[size - 1] = newSort[size / 2];
         return newSort3;
     }
 

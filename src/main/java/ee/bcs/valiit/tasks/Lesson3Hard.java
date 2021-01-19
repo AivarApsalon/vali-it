@@ -70,6 +70,38 @@ public class Lesson3Hard {
     }
 
 
+    public static void randomGameWeb() {
+        Random random = new Random();
+        int i = random.nextInt(100);
+
+        System.out.println("Olen suvaline number 1-st kuni 100-ni");
+        System.out.println("Arva mind ära!");
+        boolean hasWon = false;
+        Scanner scanner = new Scanner(System.in);
+        int count = 0;
+        while (!hasWon) {
+            count++;
+            int guess = scanner.nextInt();
+            if (i < guess) {
+                System.out.println("Number on väiksem kui " + guess + ".");
+            }
+            if (i > guess) {
+                System.out.println("Number on suurem kui " + guess + ".");
+            }
+            if (i == guess) {
+                hasWon = true;
+            }
+        }
+        System.out.println("ÕIGE!");
+        System.out.println("Sul kulus äraarvamiseks " + count + " katset.");
+    }
+
+
+
+
+
+
+
     public static String morseCode(String text) {
         // TODO kirjuta programm, mis tagastab sisestatud teksti morse koodis (https://en.wikipedia.org/wiki/Morse_code)
         // Kasuta sümboleid . ja -
