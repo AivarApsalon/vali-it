@@ -38,7 +38,8 @@ public class Lesson4PankController {
             BigDecimal currentBalance = accountMap.get(accountNr);
             BigDecimal newBalance = currentBalance.add(Money);
             accountMap.put(accountNr, newBalance);
-            return "Added " + Money + "EUR. / New balance on account number " + accountNr + " is: " + newBalance + " EUR";
+            return "Added " + Money + "EUR. / New balance on account number " + accountNr + " is: "
+                    + newBalance + " EUR";
         }
 
     }
@@ -52,7 +53,8 @@ public class Lesson4PankController {
             BigDecimal currentBalance = accountMap.get(accountNr);
             BigDecimal newBalance = currentBalance.subtract(Money);
             accountMap.put(accountNr, newBalance);
-            return "Withdrawed " + Money + "EUR. / New balance on account number " + accountNr + " is: " + newBalance + " EUR";
+            return "Withdrawed " + Money + "EUR. / New balance on account number " + accountNr + " is: "
+                    + newBalance + " EUR";
         }
     }
 
@@ -75,7 +77,6 @@ public class Lesson4PankController {
                 accountMap.put(toAccount, newToAccountBalance);
                 return "From account nr: " + fromAccount + " was transfered " + Money +
                         " EUR to account nr: " + toAccount;
-
             }
         }
     }
