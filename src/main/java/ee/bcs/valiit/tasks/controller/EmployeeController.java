@@ -1,13 +1,20 @@
-package ee.bcs.valiit.tasks;
+package ee.bcs.valiit.tasks.controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class EmployeeController {
+
+    @Autowired
+    private NamedParameterJdbcTemplate jdbcTemplate;
 
     private List<Employee> listOfEmployees = new ArrayList<>();
 
@@ -37,7 +44,14 @@ public class EmployeeController {
 
     @PostMapping("employee")
     public void addEmployee(@RequestBody Employee employee) {
-        listOfEmployees.add(employee);
+        String sql = "INSERT INTO employee (eesnimi , perenimi, vanus, kood) VALUES(:eesnimiParameter, :perenimiParameter,:vanusParameter, :koodParameter)";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("eesnimiParameter", employee.getEesnimi());
+        paramMap.put("perenimiParameter", employee.getPerenimi());
+        paramMap.put("vanusParameter", employee.getVanus());
+        paramMap.put("koodParameter", employee.getKood());
+        jdbcTemplate.update(sql, paramMap);
+
     }
 
     @GetMapping("employee")
@@ -47,6 +61,7 @@ public class EmployeeController {
 
     @GetMapping("employee/{id}")
     public Employee idEmployee(@PathVariable("id") int id) {
+
         return listOfEmployees.get(id);
     }
 

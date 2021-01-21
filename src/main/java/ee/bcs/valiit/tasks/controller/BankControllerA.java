@@ -1,7 +1,6 @@
 package ee.bcs.valiit.tasks.controller;
 
 
-import ee.bcs.valiit.tasks.Employee;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -24,7 +23,30 @@ public class BankControllerA {
         return accountMap.get(nr);
     }
 
+    @PutMapping("add-to-account/{account}/{amount}")
+    public void addToAccount(@PathVariable("account") String account, @PathVariable("amount") int amount) {
+        int currentBalance = accountMap.get(account);
+        int newBalance = currentBalance + amount;
+        accountMap.put(account, newBalance);
 
+    }
 
+    @PutMapping("withdraw-from-account/{account}/{amount}")
+    public void withdrawFromAccount(@PathVariable("account") String account, @PathVariable("amount") int amount) {
+        int currentBalance = accountMap.get(account);
+        int newBalance = currentBalance - amount;
+        accountMap.put(account, newBalance);
+    }
+
+    @PutMapping("transfer/{fromaccount}/{toaccount}/{amount}")
+    public void transfer(@PathVariable("fromaccount") String fromAccount,
+                         @PathVariable("toaccount") String toAccount, @PathVariable int amount) {
+        int fromCurrentBalance = accountMap.get(fromAccount);
+        int fromNewBalance = fromCurrentBalance - amount;
+        accountMap.put(fromAccount, fromNewBalance);
+        int toCurrentBalance = accountMap.get(toAccount);
+        int toNewBalance = toCurrentBalance + amount;
+        accountMap.put(toAccount, toNewBalance);
+    }
 
 }
