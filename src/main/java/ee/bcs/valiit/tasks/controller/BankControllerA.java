@@ -9,8 +9,7 @@ import java.util.HashMap;
 
 @RequestMapping("bank")
 @RestController
-
-public class BankController {
+public class BankControllerA {
     HashMap<String, Integer> accountMap = new HashMap<>();
 
 

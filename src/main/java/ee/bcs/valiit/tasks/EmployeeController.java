@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-
-
 public class EmployeeController {
 
     private List<Employee> listOfEmployees = new ArrayList<>();
