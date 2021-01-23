@@ -1,15 +1,34 @@
 package ee.bcs.valiit.tasks.controller;
 
 public class Bank2 {
-    private String account_nr;
+    private String accountNr;
     private int balance;
+    private int addAmount;
+    private int withdrawAmount;
 
-    public String getAccount_nr() {
-        return account_nr;
+
+    public int getWithdrawAmount() {
+        return withdrawAmount;
     }
 
-    public void setAccount_nr(String account_nr) {
-        this.account_nr = account_nr;
+    public void setWithdrawAmount(int withdrawAmount) {
+        this.withdrawAmount = withdrawAmount;
+    }
+
+    public int getAddAmount() {
+        return addAmount;
+    }
+
+    public void setAddAmount(int addAmount) {
+        this.addAmount = addAmount;
+    }
+
+    public String getAccountNr() {
+        return accountNr;
+    }
+
+    public void setAccountNr(String accountNr) {
+        this.accountNr = accountNr;
     }
 
     public int getBalance() {
