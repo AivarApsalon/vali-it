@@ -22,6 +22,7 @@ public class Bank2Controller {
         paramMap.put("account_nrParameter", bank2.getAccountNr());
         paramMap.put("balanceParameter", bank2.getBalance());
         jdbcTemplate.update(sql, paramMap);
+        System.out.println();
     }
 
     @GetMapping("get-balance")
