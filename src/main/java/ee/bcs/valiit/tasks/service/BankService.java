@@ -28,28 +28,37 @@ public class BankService {
 
     }
 
-    public Integer getBalance(Bank2 bank2) {
-        return bankRepository.getBalance(bank2);
+    public Integer getBalance(String accountNr) {
+        return bankRepository.getBalance(accountNr);
 
     }
 
-
-    public void deposit(Bank2 bank2) {
-        bankRepository.addTransactionHistory(bank2);
-
-
+    public void deposit(String accountNr, int amount) {
+        int balance = bankRepository.getBalance(accountNr);
+        int newBalance = balance + amount;
+        bankRepository.updateBalance(accountNr, newBalance);
+        bankRepository.addTransactionHistory(accountNr, amount);
     }
 
-    public void withdraw(Bank2 bank2) {
-        bankRepository.withdraw(bank2);
-
+    public void withdraw(String accountNr, int amount) {
+        int balance = bankRepository.getBalance(accountNr);
+        int newBalance = balance - amount;
+        bankRepository.updateBalance(accountNr, newBalance);
+        bankRepository.addTransactionHistory(accountNr, amount * -1);
     }
 
-        public void transfer(Bank2Transfer bank2Transfer){
-    bankRepository.transfer(bank2Transfer);
+    public void transfer(String fromAccountNr, String toAccountNr, int amount) {
+
+        int fromAccountBalance = bankRepository.getBalance(fromAccountNr);
+        int fromAccountNewBalance = fromAccountBalance - amount;
+        bankRepository.updateBalance(fromAccountNr, fromAccountNewBalance);
+
+        int toAccountBalance = bankRepository.getBalance(toAccountNr);
+        int toAccountNewBalance = toAccountBalance + amount;
+        bankRepository.updateBalance(toAccountNr, toAccountNewBalance);
+        bankRepository.addTransferTransactionHistory(fromAccountNr, toAccountNr, amount);
 
     }
-
 
 
 }

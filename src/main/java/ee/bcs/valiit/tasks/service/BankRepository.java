@@ -38,87 +38,43 @@ public class BankRepository {
 
     }
 
-    public Integer getBalance(Bank2 bank2){
+    public Integer getBalance(String accountNr) {
         String sql = "SELECT balance FROM bank2 WHERE account_nr = :account_nrParameter";
         Map<String, Object> paramMapGet = new HashMap<>();
-        paramMapGet.put("account_nrParameter", bank2.getAccountNr());
+        paramMapGet.put("account_nrParameter", accountNr);
         return jdbcTemplate.queryForObject(sql, paramMapGet, Integer.class);
 
     }
 
-    public void updateBalance(Bank2 bank2) {
+    public void updateBalance(String accountNr, int newBalance) {
         String sql1 = "UPDATE bank2 SET balance = :balanceParameter WHERE account_nr = :account_nrParameter";
         Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("account_nrParameter", bank2.getAccountNr());
+        paramMap.put("account_nrParameter", accountNr);
+        paramMap.put("balanceParameter", newBalance);
         jdbcTemplate.update(sql1, paramMap);
 
     }
 
-    public void addTransactionHistory(Bank2 bank2) {
-        String sql11 = "INSERT INTO bank2transactions (account_nr, date_time, deposit) VALUES(:account_nrParameter, " +
-                ":date_timeParameter, :depositParameter)";
+    public void addTransactionHistory(String accountNr, int amount) {
+        String sql11 = "INSERT INTO bank2transactions (account_nr, date_time, deposit_withdraw) VALUES(:account_nrParameter, " +
+                ":date_timeParameter, :deposit_withdrawParameter)";
         Map<String, Object> paramMap11 = new HashMap<>();
-        paramMap11.put("account_nrParameter", bank2.getAccountNr());
+        paramMap11.put("account_nrParameter", accountNr);
+        paramMap11.put("deposit_withdrawParameter", amount);
         paramMap11.put("date_timeParameter", LocalDateTime.now().toString());
         jdbcTemplate.update(sql11, paramMap11);
 
     }
 
-
-    public void withdraw(Bank2 bank2) {
-
-        String sql = "SELECT balance FROM bank2 WHERE account_nr = :account_nrParameter";
-        Map<String, Object> paramMapGet = new HashMap<>();
-        paramMapGet.put("account_nrParameter", bank2.getAccountNr());
-        int currentBalance = jdbcTemplate.queryForObject(sql, paramMapGet, Integer.class);
-
-        String sql1 = "UPDATE bank2 SET balance = :balanceParameter WHERE account_nr = :account_nrParameter";
-        Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("account_nrParameter", bank2.getAccountNr());
-        jdbcTemplate.update(sql1, paramMap);
-
-        String sql11 = "INSERT INTO bank2transactions (account_nr, date_time, withdraw) VALUES(:account_nrParameter, " +
-                ":date_timeParameter, :withdrawParameter)";
+    public void addTransferTransactionHistory(String fromAccountNr, String toAccountNr, int amount) {
+        String sql11 = "INSERT INTO bank2transactions (account_nr, date_time, to_account, transfer) VALUES(:account_nrParameter, " +
+                ":date_timeParameter, :to_accountParameter, :transferParameter)";
         Map<String, Object> paramMap11 = new HashMap<>();
-        paramMap11.put("account_nrParameter", bank2.getAccountNr());
+        paramMap11.put("account_nrParameter", fromAccountNr);
         paramMap11.put("date_timeParameter", LocalDateTime.now().toString());
-
+        paramMap11.put("transferParameter", amount);
+        paramMap11.put("to_accountParameter", toAccountNr);
         jdbcTemplate.update(sql11, paramMap11);
-
-    }
-
-    public void transfer(Bank2Transfer bank2Transfer){
-        String sql = "SELECT balance FROM bank2 WHERE account_nr = :fromAccountNrParameter";
-        Map<String, Object> paramMapGet = new HashMap<>();
-        paramMapGet.put("fromAccountNrParameter", bank2Transfer.getFromAccountNr());
-        int currentBalance = jdbcTemplate.queryForObject(sql, paramMapGet, Integer.class);
-
-        String sql1 = "UPDATE bank2 SET balance = :fromAccountBalanceParameter WHERE account_nr = :fromAccountNrParameter";
-        Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("fromAccountNrParameter", bank2Transfer.getFromAccountNr());
-        paramMap.put("fromAccountBalanceParameter", currentBalance - bank2Transfer.getTransferAmount());
-        jdbcTemplate.update(sql1, paramMap);
-
-        String sql2 = "SELECT balance FROM bank2 WHERE account_nr = :toAccountNrParameter";
-        Map<String, Object> paramMapGet2 = new HashMap<>();
-        paramMapGet2.put("toAccountNrParameter", bank2Transfer.getToAccountNr());
-        int currentBalance2 = jdbcTemplate.queryForObject(sql2, paramMapGet2, Integer.class);
-
-        String sql3 = "UPDATE bank2 SET balance = :toAccountBalanceParameter WHERE account_nr = :toAccountNrParameter";
-        Map<String, Object> paramMap2 = new HashMap<>();
-        paramMap2.put("toAccountNrParameter", bank2Transfer.getToAccountNr());
-        paramMap2.put("toAccountBalanceParameter", currentBalance2 + bank2Transfer.getTransferAmount());
-        jdbcTemplate.update(sql3, paramMap2);
-
-        String sql11 = "INSERT INTO bank2transactions (account_nr, date_time, transfer, to_account) " +
-                " VALUES (:account_nrParameter, :date_timeParameter, :transferParameter, :to_accountParameter)";
-        Map<String, Object> paramMap11 = new HashMap<>();
-        paramMap11.put("account_nrParameter", bank2Transfer.getFromAccountNr());
-        paramMap11.put("date_timeParameter", LocalDateTime.now().toString());
-        paramMap11.put("transferParameter", bank2Transfer.getTransferAmount());
-        paramMap11.put("to_accountParameter", bank2Transfer.getToAccountNr());
-        jdbcTemplate.update(sql11, paramMap11);
-
 
     }
 
