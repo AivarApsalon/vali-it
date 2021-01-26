@@ -2,12 +2,9 @@ package ee.bcs.valiit.tasks.service;
 
 import ee.bcs.valiit.tasks.Bank2Customers;
 import ee.bcs.valiit.tasks.controller.Bank2;
-import ee.bcs.valiit.tasks.controller.Bank2Transfer;
-import ee.bcs.valiit.tasks.controller.UpdateBalance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -20,10 +17,12 @@ public class BankRepository {
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     public void addAcc(Bank2 bank2) {
-        String sql = "INSERT INTO bank2 (account_nr, balance) VALUES (:account_nrParameter, :balanceParameter)";
+        String sql = "INSERT INTO bank2 (account_nr, customer_id, balance) " +
+                "VALUES (:account_nrParameter, :customer_idParameter, :balanceParameter)";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("account_nrParameter", bank2.getAccountNr());
         paramMap.put("balanceParameter", bank2.getBalance());
+        paramMap.put("customer_idParameter", bank2.getCustomerId());
         jdbcTemplate.update(sql, paramMap);
     }
 

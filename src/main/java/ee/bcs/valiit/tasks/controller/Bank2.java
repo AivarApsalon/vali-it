@@ -1,13 +1,19 @@
 package ee.bcs.valiit.tasks.controller;
 
-import java.time.LocalDateTime;
-
 public class Bank2 {
     private String accountNr;
     private int balance;
+    private int customerId;
     private int addAmount;
     private int withdrawAmount;
 
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
 
     public String getAccountNr() {
         return accountNr;
