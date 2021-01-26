@@ -1,13 +1,19 @@
 package ee.bcs.valiit.tasks.service;
 
-import ee.bcs.valiit.tasks.Bank2Customers;
+import ee.bcs.valiit.tasks.controller.Bank2Customers;
 import ee.bcs.valiit.tasks.controller.Bank2;
+import ee.bcs.valiit.tasks.solution.SolutionEmployee;
+import ee.bcs.valiit.tasks.solution.controller.SolutionEmployeeController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -17,7 +23,7 @@ public class BankRepository {
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     public void addAcc(Bank2 bank2) {
-        String sql = "INSERT INTO bank2 (account_nr, customer_id, balance) " +
+        String sql = "INSERT INTO bank2accounts (account_nr, customer_id, balance) " +
                 "VALUES (:account_nrParameter, :customer_idParameter, :balanceParameter)";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("account_nrParameter", bank2.getAccountNr());
@@ -38,7 +44,7 @@ public class BankRepository {
     }
 
     public Integer getBalance(String accountNr) {
-        String sql = "SELECT balance FROM bank2 WHERE account_nr = :account_nrParameter";
+        String sql = "SELECT balance FROM bank2accounts WHERE account_nr = :account_nrParameter";
         Map<String, Object> paramMapGet = new HashMap<>();
         paramMapGet.put("account_nrParameter", accountNr);
         return jdbcTemplate.queryForObject(sql, paramMapGet, Integer.class);
@@ -46,7 +52,7 @@ public class BankRepository {
     }
 
     public void updateBalance(String accountNr, int newBalance) {
-        String sql1 = "UPDATE bank2 SET balance = :balanceParameter WHERE account_nr = :account_nrParameter";
+        String sql1 = "UPDATE bank2accounts SET balance = :balanceParameter WHERE account_nr = :account_nrParameter";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("account_nrParameter", accountNr);
         paramMap.put("balanceParameter", newBalance);
@@ -77,5 +83,22 @@ public class BankRepository {
 
     }
 
+    public List<Bank2Customers> getCustomers() {
+        String sql = "SELECT * FROM bank2customers";
+        List<Bank2Customers> result = jdbcTemplate.query(sql, new HashMap<>(), new BankCustomersRowMapper());
+        return result;
+    }
+
+    private class BankCustomersRowMapper implements RowMapper<Bank2Customers> {
+        @Override
+        public Bank2Customers mapRow(ResultSet resultSet, int i) throws SQLException {
+            Bank2Customers bank2Customers = new Bank2Customers();
+            bank2Customers.setName(resultSet.getString("name"));
+            bank2Customers.setFamilyName(resultSet.getString("family_name"));
+            bank2Customers.setIdCardNr(resultSet.getString("id_card_nr"));
+            return bank2Customers;
+        }
+
+    }
 
 }

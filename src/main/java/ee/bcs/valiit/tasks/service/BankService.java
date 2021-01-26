@@ -1,16 +1,11 @@
 package ee.bcs.valiit.tasks.service;
 
-import ee.bcs.valiit.tasks.Bank2Customers;
+import ee.bcs.valiit.tasks.controller.Bank2Customers;
 import ee.bcs.valiit.tasks.controller.Bank2;
-import ee.bcs.valiit.tasks.controller.Bank2Transfer;
-import ee.bcs.valiit.tasks.controller.UpdateBalance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 @Service
 public class BankService {
@@ -59,5 +54,10 @@ public class BankService {
         bankRepository.addTransferTransactionHistory(fromAccountNr, toAccountNr, amount);
 
     }
+
+    public List<Bank2Customers> bank2Customerslist() {
+        return bankRepository.getCustomers();
+    }
+
 
 }

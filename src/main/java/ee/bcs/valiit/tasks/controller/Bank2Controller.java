@@ -1,15 +1,10 @@
 package ee.bcs.valiit.tasks.controller;
 
-import ee.bcs.valiit.tasks.Bank2Customers;
-import ee.bcs.valiit.tasks.service.BankRepository;
 import ee.bcs.valiit.tasks.service.BankService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 @RequestMapping("bank2")
 @RestController
@@ -55,5 +50,11 @@ public class Bank2Controller {
                 bank2Transfer.getTransferAmount());
 
     }
+
+    @GetMapping("customers-list")
+    public List<Bank2Customers> bank2Customerslist() {
+        return bankService.bank2Customerslist();
+    }
+
 
 }
