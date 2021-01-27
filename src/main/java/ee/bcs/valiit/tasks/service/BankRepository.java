@@ -1,10 +1,9 @@
 package ee.bcs.valiit.tasks.service;
 
-import ee.bcs.valiit.tasks.controller.Bank2Customers;
 import ee.bcs.valiit.tasks.controller.Bank2;
-import ee.bcs.valiit.tasks.solution.SolutionEmployee;
-import ee.bcs.valiit.tasks.solution.controller.SolutionEmployeeController;
+import ee.bcs.valiit.tasks.controller.Bank2Customers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -47,8 +46,11 @@ public class BankRepository {
         String sql = "SELECT balance FROM bank2accounts WHERE account_nr = :account_nrParameter";
         Map<String, Object> paramMapGet = new HashMap<>();
         paramMapGet.put("account_nrParameter", accountNr);
-        return jdbcTemplate.queryForObject(sql, paramMapGet, Integer.class);
-
+        try {
+            return jdbcTemplate.queryForObject(sql, paramMapGet, Integer.class);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     public void updateBalance(String accountNr, int newBalance) {
@@ -85,8 +87,7 @@ public class BankRepository {
 
     public List<Bank2Customers> getCustomers() {
         String sql = "SELECT * FROM bank2customers";
-        List<Bank2Customers> result = jdbcTemplate.query(sql, new HashMap<>(), new BankCustomersRowMapper());
-        return result;
+        return jdbcTemplate.query(sql, new HashMap<>(), new BankCustomersRowMapper());
     }
 
     private class BankCustomersRowMapper implements RowMapper<Bank2Customers> {
@@ -96,6 +97,7 @@ public class BankRepository {
             bank2Customers.setName(resultSet.getString("name"));
             bank2Customers.setFamilyName(resultSet.getString("family_name"));
             bank2Customers.setIdCardNr(resultSet.getString("id_card_nr"));
+            bank2Customers.setCustomerId(resultSet.getInt("id"));
             return bank2Customers;
         }
 

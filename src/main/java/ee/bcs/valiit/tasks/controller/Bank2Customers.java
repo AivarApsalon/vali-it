@@ -4,7 +4,15 @@ public class Bank2Customers {
     private String idCardNr;
     private String name;
     private String familyName;
+    private int customerId;
 
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
 
     public String getIdCardNr() {
         return idCardNr;
