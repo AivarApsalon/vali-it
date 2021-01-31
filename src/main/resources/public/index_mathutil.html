@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<link rel="stylesheet" href="styles.css">
+<div style="text-align: left; color: aliceblue; font-family: 'Arial Narrow'; font-size: 15px; font-weight: bold; margin: 30px">
+<p>Min value</p>
+a: <input id="min_a">
+<p>b: <input id="min_b"></p>
+<p><button id="min_button" type="button">Min</button> </p>
+
+Answer: <input id="min_answer" disabled/>
+
+<script>
+    let min_a = document.getElementById("min_a");
+    let min_b = document.getElementById("min_b");
+    let min_answer = document.getElementById("min_answer");
+    function pressButtonFunction() {
+        if(min_a.value < min_b.value){
+            min_answer.value = min_a.value;
+        }else{
+            min_answer.value = min_b.value;
+        }
+    }
+
+    let element = document.getElementById("min_button");
+    element.addEventListener("click", pressButtonFunction)
+
+</script>
+</div>
+</body>
+</html>
