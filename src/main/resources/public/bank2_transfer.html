@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <title> AA Bank </title>
+    <link rel="stylesheet" href="../styles_bank2.css">
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+
+        AA Bank
+
+        <nav>
+
+            <ul>
+                <li><a href="bank2_home.html">Home</a></li>
+                <li><a href="bank2_create_customer.html">Create Customer</a></li>
+                <li><a href="bank2_add_account.html">Add Account</a></li>
+                <li><a href="bank2_deposit.html">Deposit</a></li>
+                <li><a href="bank2_withdraw.html">Withdraw</a></li>
+                <li><a href="bank2_transfer.html">Transfer</a></li>
+                <li><a href="bank2_get_balance.html">Get Balance</a></li>
+                <li><a href="bank2_customers_list.html">Customers List</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<h1> Transfer Money </h1>
+<p> From Account:<input id="from_account_nr"></p>
+<p> Amount of Money:<input id="transfer_amount"></p>
+<p> To Account:<input id="to_account_nr"></p>
+
+<p>
+    <button id="transfer" type="button">Transfer</button>
+</p>
+
+<script>
+
+    function transferMoney() {
+        let transfer = {
+            fromAccountNr: document.getElementById("from_account_nr").value,
+            transferAmount: document.getElementById("transfer_amount").value,
+            toAccountNr: document.getElementById("to_account_nr").value
+
+        }
+
+        fetch('/bank2/transfer',
+            {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(transfer)
+            })
+    }
+
+    let transferMoneyButton = document.getElementById("transfer");
+    transferMoneyButton.onclick = transferMoney;
+
+</script>
+
+<hr style="height:1px;border-width:0;color:gray;background-color:darkgray; margin-left: 0px; margin-right: 1100px">
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <title> AA Bank </title>
+    <link rel="stylesheet" href="../styles_bank2.css">
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+
+        AA Bank
+
+        <nav>
+
+            <ul>
+                <li><a href="bank2_home.html">Home</a></li>
+                <li><a href="bank2_create_customer.html">Create Customer</a></li>
+                <li><a href="bank2_add_account.html">Add Account</a></li>
+                <li><a href="bank2_deposit.html">Deposit</a></li>
+                <li><a href="bank2_withdraw.html">Withdraw</a></li>
+                <li><a href="bank2_transfer.html">Transfer</a></li>
+                <li><a href="bank2_get_balance.html">Get Balance</a></li>
+                <li><a href="bank2_customers_list.html">Customers List</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<h1> Get Balance </h1>
+<p> Account Number:<input id="get_balance_account_nr"></p>
+<p>
+    <button id="get_balance" type="button">Get Balance</button>
+</p>
+
+<script>
+
+    function getBalance() {
+        let accountNr = document.getElementById("get_balance_account_nr");
+        fetch('/bank2/get-balance/' + accountNr.value,
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            }
+        )
+            .then(result => result.text())
+            .then(function (result) {
+                alert(result)
+            })
+
+    }
+
+    let getBalanceButton = document.getElementById("get_balance");
+    getBalanceButton.onclick = getBalance;
+
+</script>
+
+<hr style="height:1px;border-width:0;color:gray;background-color:darkgray; margin-left: 0px; margin-right: 1100px">
+
+</body>
+</html>
