@@ -16,6 +16,9 @@
             </column>
             <column name="family_name" type="text">
             </column>
+            <column name="password" type="text">
+            </column>
+
         </createTable>
 
         <createTable tableName="bank2accounts">
@@ -46,7 +49,7 @@
             <column name="to_account" type="text">
             </column>
         </createTable>
-
-
     </changeSet>
+
+
 </databaseChangeLog>

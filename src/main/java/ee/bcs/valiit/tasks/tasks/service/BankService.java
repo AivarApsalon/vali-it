@@ -32,7 +32,6 @@ public class BankService {
             throw new Bank2Exception("Invalid account number!");
         }
         return balance;
-
     }
 
 

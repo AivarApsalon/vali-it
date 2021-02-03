@@ -26,7 +26,7 @@ public class BankRepository {
                 "VALUES (:account_nrParameter, :customer_idParameter, :balanceParameter)";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("account_nrParameter", bank2.getAccountNr());
-        paramMap.put("balanceParameter", bank2.getBalance());
+        paramMap.put("balanceParameter", 0);
         paramMap.put("customer_idParameter", bank2.getCustomerId());
         jdbcTemplate.update(sql, paramMap);
     }
@@ -83,6 +83,13 @@ public class BankRepository {
         paramMap11.put("to_accountParameter", toAccountNr);
         jdbcTemplate.update(sql11, paramMap11);
 
+    }
+
+    public String findPasswordByIdCardNumber(String idCardNr){
+        Map<String, Object> paramMap = new HashMap<>();
+        String sql = "SELECT password FROM bank2customers WHERE id_card_nr = :idCardNrParameter";
+        paramMap.put("idCardNrParameter", idCardNr);
+        return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
 
     public List<Bank2Customers> getCustomers() {

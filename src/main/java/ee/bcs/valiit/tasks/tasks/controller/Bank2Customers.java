@@ -5,6 +5,15 @@ public class Bank2Customers {
     private String name;
     private String familyName;
     private int customerId;
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public int getCustomerId() {
         return customerId;
