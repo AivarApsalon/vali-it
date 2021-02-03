@@ -28,8 +28,42 @@ Answer: <input id="min_answer" disabled/>
 
     let element = document.getElementById("min_button");
     element.addEventListener("click", pressButtonFunction)
-
 </script>
 </div>
+
+<hr>
+
+<div style="text-align: left; color: aliceblue; font-family: 'Arial Narrow'; font-size: 15px; font-weight: bold; margin: 30px">
+<p>Max value</p>
+    a: <input id="max_a">
+    <p>b: <input id="max_b"></p>
+    <p><button id="max_button" type="button">Max</button> </p>
+
+    Answer: <input id="max_answer" disabled/>
+
+    <script>
+        let max_a = document.getElementById("max_a");
+        let max_b = document.getElementById("max_b");
+        let max_answer = document.getElementById("max_answer");
+        function pressButtonFunction() {
+            if(max_a.value > max_b.value){
+                max_answer.value = max_a.value;
+            }else{
+                max_answer.value = max_b.value;
+            }
+        }
+
+        let element = document.getElementById("max_button");
+        element.addEventListener("click", pressButtonFunction)
+    </script>
+</div>
+
+
+
+
+
+
+
+
 </body>
 </html>

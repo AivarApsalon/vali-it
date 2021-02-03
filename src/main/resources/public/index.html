@@ -1,26 +1,282 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="utf-8">
+    <title> AA Bank </title>
+    <link rel="stylesheet" href="styles_bank.css">
+</head>
 <body>
-<title> AA Bank </title>
-<link rel="stylesheet" href="styles_bank.css">
+
+<header>
 
 <div style="text-align: center; color: darkgrey; font-family: 'Arial Narrow'; font-size: 40px;
- word-spacing: 8px; margin-bottom: 60px">
-
-        <header> AA Bank </header>
-
+ word-spacing: 8px; margin-bottom: 60px; margin-top: 40px">
+    AA Bank
+    <hr style="height:1px;border-width:0;color:gray;background-color:darkgray; margin-left: 500px; margin-right: 500px">
 </div>
 
-<div class="p">
+</header>
 
-    <p> Add Customer </p>
-    <p> Create Account </p>
-    <p> Deposit </p>
+<h1>
+    Add Customer
+</h1>
 
+<p> Name:<input id="name"></p>
+<p> Family Name:<input id="family_name"></p>
+<p> Id Card Number:<input id="id_card_number"></p>
+<p>
+    <button id="add_customer" type="button">Add Customer</button>
+</p>
+
+<script>
+
+    function addCustomer() {
+        let newCustomer = {
+            name: document.getElementById("name").value,
+            familyName: document.getElementById("family_name").value,
+            idCardNr: document.getElementById("id_card_number").value
+        }
+
+        fetch('/bank2/new-customer',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newCustomer)
+            })
+    }
+
+    let addCustomerButton = document.getElementById("add_customer");
+    addCustomerButton.onclick = addCustomer;
+
+</script>
+
+<hr style="height:1px;border-width:0;color:gray;background-color:darkgray; margin-left: 0px; margin-right: 1100px">
+
+
+<h1> Create Account </h1>
+<p> Account Number:<input id="account_nr"></p>
+<p> Customer ID:<input id="customer_id"></p>
+<p>
+    <button id="create_account" type="button">Create Account</button>
+</p>
+
+<script>
+
+    function createAccount() {
+        let newAccount = {
+            accountNr: document.getElementById("account_nr").value,
+            customerId: document.getElementById("customer_id").value
+
+        }
+
+        fetch('/bank2/create-acc',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newAccount)
+            })
+    }
+
+    let createAccountButton = document.getElementById("create_account");
+    createAccountButton.onclick = createAccount;
+
+</script>
+
+<hr style="height:1px;border-width:0;color:gray;background-color:darkgray; margin-left: 0px; margin-right: 1100px">
+
+
+<h1> Deposit Money </h1>
+<p> Account Number:<input id="deposit_account_nr"></p>
+<p> Amount of Money:<input id="deposit_amount"></p>
+<p>
+    <button id="deposit" type="button">Deposit</button>
+</p>
+
+<script>
+
+    function depositMoney() {
+        let deposit = {
+            accountNr: document.getElementById("deposit_account_nr").value,
+            addAmount: document.getElementById("deposit_amount").value
+
+        }
+
+        fetch('/bank2/deposit',
+            {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(deposit)
+            })
+    }
+
+    let depositMoneyButton = document.getElementById("deposit");
+    depositMoneyButton.onclick = depositMoney;
+
+</script>
+
+<hr style="height:1px;border-width:0;color:gray;background-color:darkgray; margin-left: 0px; margin-right: 1100px">
+
+
+<h1> Withdraw Money </h1>
+<p> Account Number:<input id="withdraw_account_nr"></p>
+<p> Amount of Money:<input id="withdraw_amount"></p>
+
+<p>
+    <button id="withdraw" type="button">Withdraw</button>
+</p>
+
+<script>
+
+    function withdrawMoney() {
+        let withdraw = {
+            accountNr: document.getElementById("withdraw_account_nr").value,
+            withdrawAmount: document.getElementById("withdraw_amount").value
+
+        }
+
+        fetch('/bank2/withdraw',
+            {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(withdraw)
+            })
+    }
+
+    let withdrawMoneyButton = document.getElementById("withdraw");
+    withdrawMoneyButton.onclick = withdrawMoney;
+
+</script>
+
+<hr style="height:1px;border-width:0;color:gray;background-color:darkgray; margin-left: 0px; margin-right: 1100px">
+
+<h1> Transfer Money </h1>
+<p> From Account:<input id="from_account_nr"></p>
+<p> Amount of Money:<input id="transfer_amount"></p>
+<p> To Account:<input id="to_account_nr"></p>
+
+<p>
+    <button id="transfer" type="button">Transfer</button>
+</p>
+
+<script>
+
+    function transferMoney() {
+        let transfer = {
+            fromAccountNr: document.getElementById("from_account_nr").value,
+            transferAmount: document.getElementById("transfer_amount").value,
+            toAccountNr: document.getElementById("to_account_nr").value
+
+        }
+
+        fetch('/bank2/transfer',
+            {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(transfer)
+            })
+    }
+
+    let transferMoneyButton = document.getElementById("transfer");
+    transferMoneyButton.onclick = transferMoney;
+
+</script>
+
+<h1> Get Balance </h1>
+<p> Account Number:<input id="get_balance_account_nr"></p>
+<p>
+    <button id="get_balance" type="button">Get Balance</button>
+</p>
+
+<script>
+
+    function getBalance() {
+        let accountNr = document.getElementById("get_balance_account_nr");
+        fetch('/bank2/get-balance/' + accountNr.value,
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            }
+        )
+            .then(result => result.text())
+            .then(function (result) {
+                alert(result)
+            })
+
+    }
+
+    let getBalanceButton = document.getElementById("get_balance");
+    getBalanceButton.onclick = getBalance;
+
+</script>
+
+<hr style="height:1px;border-width:0;color:gray;background-color:darkgray; margin-left: 0px; margin-right: 1100px">
+
+
+<h1> Customers List </h1>
+<div class="table">
+    <table id="customersTable">
+        <tr>
+            <th>ID Card Nr</th>
+            <th>Name</th>
+            <th>Family Name</th>
+            <th>Customer ID</th>
+        </tr>
+    </table>
+    <button id="allCustomersButton">Get All Customers</button>
 </div>
+<script>
 
-</head>
+    function getAllCustomers() {
+        fetch('/bank2/customers-list')
+            .then(result => result.json())
+            .then(function (result) {
+                let tableElement = document.getElementById("customersTable");
+                tableElement.innerHTML = "";
+                for (let element of result) {
+                    let newRowElement = document.createElement("tr");
+                    tableElement.appendChild(newRowElement)
+
+                    let newCellElement = document.createElement("td");
+                    newCellElement.innerText = element.idCardNr;
+                    newRowElement.appendChild(newCellElement)
+
+                    newCellElement = document.createElement("td");
+                    newCellElement.innerText = element.name;
+                    newRowElement.appendChild(newCellElement)
+
+                    newCellElement = document.createElement("td");
+                    newCellElement.innerText = element.familyName;
+                    newRowElement.appendChild(newCellElement)
+
+                    newCellElement = document.createElement("td");
+                    newCellElement.innerText = element.customerId;
+                    newRowElement.appendChild(newCellElement)
+                }
+                console.log(result);
+            })
+    }
+
+    let button = document.getElementById("allCustomersButton");
+    button.onclick = getAllCustomers;
+
+</script>
+
+<hr style="height:1px;border-width:0;color:gray;background-color:darkgray; margin-left: 0px; margin-right: 1100px">
+
+
 
 </body>
+
 </html>

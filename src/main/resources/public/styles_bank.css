@@ -7,17 +7,22 @@ p {
     color: darkgrey;
     font-family: 'Arial Narrow';
     font-size: 20px;
-    text-align: center;
-    margin-top: 40px;
+    text-align: right;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 1100px;
 }
 
-
-
-
-
-
-
-
+h1 {
+    text-align: left;
+    color: darkgrey;
+    font-family: 'Arial Narrow';
+    font-size: 25px;
+    text-align: right;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 1100px;
+}
 
 
 

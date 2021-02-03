@@ -18,9 +18,10 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ResponseError> handleException(Exception e) {
+        e.printStackTrace();
         ResponseError error = new ResponseError();
         error.setMessage("Internal server error");
-        return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }
