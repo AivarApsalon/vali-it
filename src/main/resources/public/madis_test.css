@@ -1,0 +1,20 @@
+h1 {
+    color: red;
+}
+
+.house {
+    color: blue;
+}
+
+.house h2 {
+    color: green;
+}
+
+.house.text {
+    background-color: yellow;
+}
+
+#content {
+    background-color: rosybrown;
+}
+
